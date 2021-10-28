@@ -2,7 +2,7 @@
 
 Implementation of the **Polynomial String Kernel** and a fast **String Kernel** implementation as described in [our paper](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1).
 
-- Linear time computation
+- Linear time computation.
 
 - Compatible and ready for easy plug-in to Scikit-Learn's Support Vector Machines. 
 
