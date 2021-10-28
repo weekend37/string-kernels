@@ -1,6 +1,6 @@
-# String Kernel
+# String Kernels
 
-Polynomial String Kernel and fast string kernel implementation as described in [our paper](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1).
+Implementation of the **Polynomial String Kernel** and a fast **String Kernel** implementation as described in [our paper](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1).
 
 Compatible and ready for easy plug-in to Scikit-Learn's Support Vector Machines. 
 
