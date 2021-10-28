@@ -4,7 +4,7 @@ from functools import partial
 
 ## ------------------------------- Polynomial String Kernel ------------------------------- ##
 
-def polynomial_string_kernel_vectors(x,y,p,normalize=True):
+def polynomial_string_kernel_vectors(x,y,p,normalize=False):
     """
     Linear time polynomial string kernel distance implentation for two sequences x and y
     for a monomial with exponent p
@@ -28,7 +28,7 @@ def polynomial_string_kernel_vectors(x,y,p,normalize=True):
 
     return K
 
-def polynomial_string_kernel_singlethread(X,Y,p=1.2,normalize=True):
+def polynomial_string_kernel_singlethread(X,Y,p=1.2,normalize=False):
     """
     Linear time polynomial string kernel distance implentation for two data matrices X and Y
     for a monomial with exponent p
@@ -40,7 +40,7 @@ def polynomial_string_kernel_singlethread(X,Y,p=1.2,normalize=True):
             
     return K
 
-def polynomial_string_kernel(X,Y,p=1.2,n_jobs=16,normalize=True):
+def polynomial_string_kernel(X,Y,p=1.2,n_jobs=16,normalize=False):
     """
     Multithreaded linear time polynomial string kernel distance implentation for two data matrices X and Y
     for a monomial with exponent p to run across n_jobs different cpus.
