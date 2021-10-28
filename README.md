@@ -2,7 +2,11 @@
 
 Implementation of the **Polynomial String Kernel** and a fast **String Kernel** implementation as described in [our paper](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1).
 
-Compatible and ready for easy plug-in to Scikit-Learn's Support Vector Machines. 
+- Linear time computation
+
+- Compatible and ready for easy plug-in to Scikit-Learn's Support Vector Machines. 
+
+- Supports multithreading.
 
 <img caption="String Kernel Computations" src="doc/fig/triangular_numbers.png">
 
