@@ -1,9 +1,9 @@
 # String Kernels
 
-This repo contains an implementation of the **Polynomial String Kernel** and a linear time **String Kernel** algorithm as described in our paper, [High Resolution Ancestry Deconvolution for Next Generation Genomic Data](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1). 
+This package contains an implementation of the **Polynomial String Kernel** and a linear time **String Kernel** algorithm as described in our paper, [High Resolution Ancestry Deconvolution for Next Generation Genomic Data](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1). 
 
 
-<img caption="String Kernel Computations" src="https://github.com/weekend37/string-kernels/blob/master/doc/fig/triangular_numbers.png">
+<img caption="String Kernel Computations" src="https://raw.githubusercontent.com/weekend37/string-kernels/master/doc/fig/triangular_numbers.png">
 
 It offers
 
@@ -23,7 +23,7 @@ pip install string-kernels
 
 And then you're all set!
 
-Assuming you have [Scikit-Learn](https://scikit-learn.org/) already installed you can use Lodhi's string kernel via
+Assuming you have [Scikit-Learn](https://scikit-learn.org/) already installed, you can use Lodhi's string kernel via
 
 ```python
 from sklearn import svm
