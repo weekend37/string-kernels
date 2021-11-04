@@ -1,1 +1,1 @@
-recursive-include src/example_package/data *
+recursive-include src/stringkernels/data *
