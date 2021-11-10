@@ -44,7 +44,7 @@ def string_kernel_singlethread(X,Y,normalize=True):
     """
     return np.array([string_kernel_vectorized(x,Y,normalize=normalize) for x in X])
 
-def string_kernel(X,Y,normalize=True,n_jobs=None):
+def string_kernel_multithread(X,Y,normalize=True,n_jobs=None):
     """
     Singly vectorized linear time string kernel implentation for data matrices X and Y with multithreading
     """
@@ -55,6 +55,27 @@ def string_kernel(X,Y,normalize=True,n_jobs=None):
     K = np.array(K_list).squeeze()
     
     return K
+
+def string_kernel(normalize=True,n_jobs=None):
+    """
+    Wrapper for a singly vectorized linear time string kernel implentation for data matrices X and Y
+    -----------
+    Parameters
+        - normalzie : bool, default=True
+            indicates if the kernel output should be normalized s.t. max(K) <= 1
+        - n_jobs : int, default=None
+            how many CPUs to distribute the process over. If None, use maximum available CPUs.
+    -----------
+    Returns
+        - string_kernel_func : function
+            function that takes in two data matrices X and Y as arguments
+            (np.ndarray's of shapes (NX,MX) and (NY, MY) where N_ is the number of samples and M_ is sequence length)
+            and returns the string kernel value between product of all samples in X and Y (int, float depending on normalization)
+    """
+    if n_jobs is not None and n_jobs==1:
+        return partial(string_kernel_singlethread, normalize=normalize)
+    else:
+        return partial(string_kernel_multithread, normalize=normalize, n_jobs=n_jobs)
 
 ## ------------------------------- Polynomial String Kernel ------------------------------- ##
 
@@ -94,7 +115,7 @@ def polynomial_string_kernel_singlethread(X,Y,p=1.2,normalize=False):
             
     return K
 
-def polynomial_string_kernel(X,Y,p=1.2,n_jobs=16,normalize=False):
+def polynomial_string_kernel_multithread(X,Y,p=1.2,normalize=False,n_jobs=16):
     """
     Multithreaded linear time polynomial string kernel distance implentation for two data matrices X and Y
     for a monomial with exponent p to run across n_jobs different cpus.
@@ -106,3 +127,27 @@ def polynomial_string_kernel(X,Y,p=1.2,n_jobs=16,normalize=False):
     K = np.array(K_list).squeeze()
     
     return K
+
+def polynomial_string_kernel(p=1.2,normalize=False, n_jobs=16):
+    """
+    Wrapper for a linear time polynomial string kernel distance implentation for two data matrices X and Y
+    for a monomial with exponent p to run across n_jobs different cpus.
+    -----------
+    Parameters
+        - p: float or int, default = 1.2
+            exponent of the monomial which will be used
+        - normalzie : bool, default=True
+            indicates if the kernel output should be normalized s.t. max(K) <= 1
+        - n_jobs : int, default=None
+            how many CPUs to distribute the process over. If None, use maximum available CPUs.
+    -----------
+    Returns
+        - polynomial_string_kernel_func : function
+            function that takes in two data matrices X and Y as arguments
+            (np.ndarray's of shapes (NX,MX) and (NY, MY) where N_ is the number of samples and M_ is sequence length)
+            and returns the polynomial string kernel value between product of all samples in X and Y (float)
+    """
+    if n_jobs is not None and n_jobs==1:
+        return partial(polynomial_string_kernel_singlethread, p=p, normalize=normalize)
+    else:
+        return partial(polynomial_string_kernel_multithread, p=p, normalize=normalize, n_jobs=n_jobs)
