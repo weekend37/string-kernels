@@ -1,7 +1,6 @@
 # String Kernels
 
-This package contains an implementation of the **Polynomial String Kernel** and a linear time **String Kernel** algorithm as described in our paper, [High Resolution Ancestry Deconvolution for Next Generation Genomic Data](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1). 
-
+This package contains an implementation of the **Polynomial String Kernel** and a linear time **String Kernel** algorithm as described in our paper, [High Resolution Ancestry Deconvolution for Next Generation Genomic Data](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1). <br/><br/>
 
 <img caption="String Kernel Computations" src="https://raw.githubusercontent.com/weekend37/string-kernels/master/doc/fig/triangular_numbers.png">
 
