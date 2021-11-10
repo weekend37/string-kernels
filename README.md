@@ -39,6 +39,6 @@ from stringkernels.kernels import polynomial_string_kernel
 model = svm.SVC(kernel=polynomial_string_kernel())
 ```
 
-For morer information read the [docs](https://github.com/weekend37/string-kernels/blob/master/doc/docs.md) or take a look at the notebook [example.ipynb](https://github.com/weekend37/string-kernels/blob/master/example.ipynb) for further demonstration of usage.
+For morer information read the [docs](https://github.com/weekend37/string-kernels/blob/master/doc/fig/docs.md) or take a look at the notebook [example.ipynb](https://github.com/weekend37/string-kernels/blob/master/example.ipynb) for further demonstration of usage.
 
 If you end up using this in your research we kindly ask you to cite us! :)
