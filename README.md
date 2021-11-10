@@ -28,7 +28,7 @@ Assuming you have [Scikit-Learn](https://scikit-learn.org/) already installed, y
 ```python
 from sklearn import svm
 from stringkernels.kernels import string_kernel
-model = svm.SVC(kernel=string_kernel)
+model = svm.SVC(kernel=string_kernel())
 ```
 
 and the polynomial string kernel,
@@ -36,9 +36,9 @@ and the polynomial string kernel,
 ```python
 from sklearn import svm
 from stringkernels.kernels import polynomial_string_kernel
-model = svm.SVC(kernel=polynomial_string_kernel)
+model = svm.SVC(kernel=polynomial_string_kernel())
 ```
 
-See the notebook [example.ipynb](https://github.com/weekend37/string-kernels/blob/master/example.ipynb) for further demonstration of usage.
+For morer information read the [docs](https://github.com/weekend37/string-kernels/blob/master/doc/docs.md) or take a look at the notebook [example.ipynb](https://github.com/weekend37/string-kernels/blob/master/example.ipynb) for further demonstration of usage.
 
 If you end up using this in your research we kindly ask you to cite us! :)
