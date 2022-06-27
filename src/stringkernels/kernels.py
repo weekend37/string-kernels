@@ -151,3 +151,56 @@ def polynomial_string_kernel(p=1.2,normalize=False, n_jobs=16):
         return partial(polynomial_string_kernel_singlethread, p=p, normalize=normalize)
     else:
         return partial(polynomial_string_kernel_multithread, p=p, normalize=normalize, n_jobs=n_jobs)
+
+## ------------------------------- CovRSK ------------------------------- ##
+
+def ohe(idx, size):
+    out = np.zeros(size,dtype=int)
+    out[idx-1] = 1
+    return out
+
+def CovSample(M, alpha, beta, seed=1):
+
+    np.random.seed(seed)
+    
+    Ms = [1]
+    for m in range(2,M+1): 
+        if (1-(alpha**(m-Ms[-1]+1)))*(m**(-beta)) >= np.random.rand():
+            Ms += [m]
+
+    return Ms
+
+def CovRSK_vectorized(x,Y,Ms_ohe):
+    z = x==Y
+    K, tri, cov_tri = np.zeros((3, len(z)), dtype=int)
+    for equal in z.T:
+        tri += equal
+        mask = Ms_ohe[tri] == 1
+        cov_tri += mask*equal
+        tri[~equal] = 0
+        cov_tri[~equal] = 0
+        K += cov_tri
+    return K
+    
+def CovRSK_singlethread(X, Y, alpha=0.6, beta=1.0, seed=37):
+
+    Xn, Xm = X.shape
+    Ms = CovSample(Xm, alpha, beta, seed)
+    Ms_ohe = ohe(idx=np.array(Ms)+1, size=Xm+1)
+    K = np.array([CovRSK_vectorized(x,Y,Ms_ohe=Ms_ohe) for x in X])
+
+    return K
+
+def CovRSK_multithread(X, Y, alpha=0.6, beta=1.0, n_jobs=None, seed=37):
+    
+    Xn, Xm = X.shape
+    Ms = CovSample(Xm, alpha, beta, seed)
+    Ms_ohe = ohe(idx=np.array(Ms)+1, size=Xm+1)
+    func = partial(CovRSK_vectorized, Y=Y,Ms_ohe=Ms_ohe)
+    with mp.Pool(n_jobs) as pool:
+        K_list = pool.map(func, X)
+    
+    K = np.array(K_list).squeeze()
+    
+    return K
+    
