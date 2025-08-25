@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/python-3.6%2B-green.svg)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-compatible-orange)
+[![PyPI Downloads](https://static.pepy.tech/badge/string-kernels)](https://pepy.tech/projects/string-kernels)
+
 # String Kernels
 
 This package contains an implementation of the **Polynomial String Kernel** and a linear time **String Kernel** algorithm as described in our paper, [High Resolution Ancestry Deconvolution for Next Generation Genomic Data](https://www.biorxiv.org/content/10.1101/2021.09.19.460980v1). <br/><br/>
